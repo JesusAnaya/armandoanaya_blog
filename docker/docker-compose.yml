@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  web:
+    container_name: armando-blog
+    image: armandoanaya_blog:latest
+    build:
+      context: ..
+      dockerfile: docker/dev.dockerfile
+    volumes:
+      - ../:/code:cached
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres12host
+
+  postgres12host:
+    container_name: postgres12
+    image: postgres:12.3-alpine
+    restart: always
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres12_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: armandoanaya_blog
+      PGDATA: /var/lib/postgresql/data/pgdata
+
+volumes:
+  postgres12_data:

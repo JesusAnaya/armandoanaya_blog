@@ -1,0 +1,10 @@
+.DS_Store
+*.pyc
+*.pyo
+*.egg-info
+*.sqlite3
+.idea
+
+# Configuration files
+settings/dev.py
+settings/production.py
