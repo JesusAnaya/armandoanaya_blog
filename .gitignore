@@ -8,3 +8,5 @@
 # Configuration files
 armandoanaya_blog/settings/dev.py
 armandoanaya_blog/settings/production.py
+
+/media
