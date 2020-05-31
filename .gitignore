@@ -6,5 +6,5 @@
 .idea
 
 # Configuration files
-settings/dev.py
-settings/production.py
+armandoanaya_blog/settings/dev.py
+armandoanaya_blog/settings/production.py
