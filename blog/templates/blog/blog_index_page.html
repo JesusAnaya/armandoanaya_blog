@@ -5,21 +5,41 @@
 {% block body_class %}template-blogindexpage{% endblock %}
 
 {% block content %}
-    <h1>{{ page.title }}</h1>
-
-    <div class="intro">{{ page.intro|richtext }}</div>
+  <!-- Blog Entries Column -->
+  <div class="col-md-8">
+    <h1 class="my-4">{{ page.title }}</h1>
 
     {% for post in blogpages %}
         {% with post=post.specific %}
-            <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
-
+        <!-- Blog Post -->
+        <div class="card mb-4">
             {% with post.main_image as main_image %}
-                {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
+                {% if main_image %}
+                {% image main_image fill-730x300 class='card-img-top' %}
+                {% endif %}
             {% endwith %}
-
-            <p>{{ post.intro }}</p>
-            {{ post.body|richtext }}
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">
+                {{ post.body|striptags|truncatewords:50|richtext }}
+            </p>
+            <a href="{% pageurl post %}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            {{ post.first_published_at }}
+        </div>
+        </div>
         {% endwith %}
     {% endfor %}
 
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center mb-4">
+      <li class="page-item">
+        <a class="page-link" href="#">&larr; Older</a>
+      </li>
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Newer &rarr;</a>
+      </li>
+    </ul>
+  </div>
 {% endblock %}
