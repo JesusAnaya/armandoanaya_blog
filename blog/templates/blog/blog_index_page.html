@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -10,26 +10,26 @@
     <h1 class="my-4">{{ page.title }}</h1>
 
     {% for post in blogpages %}
-        {% with post=post.specific %}
-        <!-- Blog Post -->
-        <div class="card mb-4">
-            {% with post.main_image as main_image %}
-                {% if main_image %}
-                {% image main_image fill-730x300 class='card-img-top' %}
-                {% endif %}
-            {% endwith %}
-        <div class="card-body">
-            <h2 class="card-title">{{ post.title }}</h2>
-            <p class="card-text">
-                {{ post.body|striptags|truncatewords:50|richtext }}
-            </p>
-            <a href="{% pageurl post %}" class="btn btn-primary">Read More &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-            {{ post.first_published_at }}
-        </div>
-        </div>
+      {% with post=post.specific %}
+      <!-- Blog Post -->
+      <div class="card mb-4">
+        {% with post.main_image as main_image %}
+          {% if main_image %}
+          {% image main_image fill-730x300 class='card-img-top' %}
+          {% endif %}
         {% endwith %}
+      <div class="card-body">
+        <h2 class="card-title">{{ post.title }}</h2>
+        <p class="card-text">
+          {{ post.body|striptags|truncatewords:50|richtext }}
+        </p>
+        <a href="{% pageurl post %}" class="btn btn-primary">{% trans 'See more' %} &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        {{ post.first_published_at }}
+      </div>
+      </div>
+      {% endwith %}
     {% endfor %}
 
     <!-- Pagination -->

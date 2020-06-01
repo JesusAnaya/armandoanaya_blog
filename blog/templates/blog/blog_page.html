@@ -5,33 +5,27 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-<div class="col-lg-8">
-
+  <div class="col-lg-8">
     <!-- Title -->
     <h1 class="mt-4">{{ page.title }}</h1>
-
     <hr>
 
     <!-- Date/Time -->
     <p>{{ page.date }}</p>
-
     <hr>
 
     <!-- Preview Image -->
     {% with page.main_image as main_image %}
-        {% if main_image %}
+      {% if main_image %}
         {% image main_image fill-730x300 class='img-fluid rounded' %}
-        {% endif %}
+      {% endif %}
     {% endwith %}
     <hr>
 
     <!-- Post Content -->
-    <p>
-        {{ page.body|richtext}}
-    </p>
-    
+    <p>{{ page.body|richtext}}</p>
     <hr>
-  
+
     <!-- Comments Form -->
     <div class="card my-4">
       <h5 class="card-header">Leave a Comment:</h5>
@@ -80,4 +74,4 @@
       </div>
     </div>
   </div>
-  {% endblock %}
+{% endblock %}

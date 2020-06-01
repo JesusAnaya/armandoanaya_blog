@@ -80,6 +80,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'armando_tags': 'armandoanaya_blog.templatetags.armando_tags',
+            },
         },
     },
 ]
@@ -108,7 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = [
+    os.path.join(PROJECT_DIR, 'locale'),
+]
+
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'UTC'
 
