@@ -1,0 +1,10 @@
+
+img.richtext-image.full-width {
+    width: 730px;
+}
+
+div > iframe {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 300px;
+}

@@ -1,0 +1,16 @@
+body {
+  padding-top: 56px;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.4rem;
+}
+
+p {
+    text-align: justify;
+}
