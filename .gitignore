@@ -14,3 +14,4 @@ armandoanaya_blog/settings/production.py
 /media
 /static_root
 /media_root
+/certs

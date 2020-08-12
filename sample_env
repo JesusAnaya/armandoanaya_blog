@@ -25,3 +25,4 @@ DB_ENV_PATH=./db-variables.env
 NGINX_PUBLIC_PORT=80
 NGINX_SAFE_PORT=443
 NGINX_CONFIG_PATH=./config/nginx/
+NGINX_CERTS_PATH=./certs/
