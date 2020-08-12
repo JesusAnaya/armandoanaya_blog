@@ -3,6 +3,7 @@ version: '3.7'
 services:
   web:
     env_file: ${WEB_ENV_PATH}
+    restart: always
     container_name: blog-webapp
     image: armandoanaya_blog:prod
     build:
@@ -15,16 +16,21 @@ services:
 
   db:
     env_file: ${DB_ENV_PATH}
+    restart: always
     image: postgres:12.3-alpine
     container_name: blog-db
     volumes:
       - postgresdb_data:/var/lib/postgresql/data/
 
   nginx:
+    restart: always
     image: nginx:1.19.0-alpine
     container_name: blog-nginx
     ports:
-      - "${NGINX_PUBLIC_PORT}:80"
+      - target: 80
+        published: ${NGINX_PUBLIC_PORT}
+        protocol: tcp
+        mode: host
     depends_on:
       - web
     volumes:
