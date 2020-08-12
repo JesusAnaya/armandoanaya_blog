@@ -4,7 +4,6 @@ FROM python:3.8-slim-buster
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_ENV dev
 
 # needed for pillow
 RUN apt update && apt-get install -y \
