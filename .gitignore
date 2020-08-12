@@ -4,9 +4,13 @@
 *.egg-info
 *.sqlite3
 .idea
+.env*
+*.env
 
 # Configuration files
 armandoanaya_blog/settings/dev.py
 armandoanaya_blog/settings/production.py
 
 /media
+/static_root
+/media_root

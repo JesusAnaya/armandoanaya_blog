@@ -1,0 +1,27 @@
+# Web settings
+DEBUG=1
+SECRET_KEY=foo
+DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+DISQUS_PAGE_IDENTIFIER=
+DISQUS_PAGE_URL=
+SQL_ENGINE=django.db.backends.postgresql
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+SQL_DATABASE=hello_django_dev
+SQL_USER=hello_django
+SQL_PASSWORD=hello_django
+SQL_HOST=db
+SQL_PORT=5432
+DATABASE=postgres
+
+# Database settings
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=database
+
+# Server settings
+WEB_CONTEXT_PATH=./
+WEB_ENV_PATH=./web-variables.env
+DB_ENV_PATH=./db-variables.env
+NGINX_PUBLIC_PORT=80
+NGINX_SAFE_PORT=443
+NGINX_CONFIG_PATH=./config/nginx/
