@@ -210,7 +210,6 @@ else:
     AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME', '')
     AWS_DEFAULT_ACL = None
     AWS_S3_OBJECT_PARAMETERS = {
-        'Access-Control-Allow-Origin': '*',
         'CacheControl': 'max-age=86400',
     }
 
@@ -220,15 +219,15 @@ else:
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
-# Install the Sentry SDK
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
+    # Install the Sentry SDK
+    import sentry_sdk
+    from sentry_sdk.integrations.django import DjangoIntegration
 
-sentry_sdk.init(
-    dsn=os.environ.get('SENTRY_DNS'),
-    integrations=[DjangoIntegration()],
+    sentry_sdk.init(
+        dsn=os.environ.get('SENTRY_DNS'),
+        integrations=[DjangoIntegration()],
 
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
+        # If you wish to associate users to errors (assuming you are using
+        # django.contrib.auth) you may enable sending PII data.
+        send_default_pii=True
+    )
