@@ -43,6 +43,7 @@ THIRD_PARTY_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     'wagtail.contrib.redirects',
     'wagtail.embeds',
