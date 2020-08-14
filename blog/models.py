@@ -6,15 +6,19 @@ from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
 from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core import blocks
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.search import index
+from wagtailcodeblock.blocks import CodeBlock
+
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
-    
+
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname="full")
     ]
@@ -70,15 +74,15 @@ class BlogCategory(models.Model):
 
 class BlogPage(Page):
     date = models.DateField("Post date")
-    intro = models.CharField(max_length=250)
-    body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
-    search_fields = Page.search_fields + [
-        index.SearchField('intro'),
-        index.SearchField('body'),
-    ]
+    body = StreamField([
+        ('heading', blocks.CharBlock(classname="full title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('code', CodeBlock(icon='code')),
+    ])
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -86,9 +90,12 @@ class BlogPage(Page):
             FieldPanel('tags'),
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
-        FieldPanel('intro'),
-        FieldPanel('body', classname="full"),
         InlinePanel('gallery_images', label="Gallery images"),
+        StreamFieldPanel('body'),
+    ]
+
+    search_fields = Page.search_fields + [
+        index.SearchField('body'),
     ]
 
     def main_image(self):

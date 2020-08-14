@@ -34,11 +34,16 @@ DISQUS_PAGE_IDENTIFIER = os.environ.get('DISQUS_PAGE_IDENTIFIER', '')
 
 # Application definition
 
-INSTALLED_APPS = [
-    'home',
-    'search',
+THIRD_PARTY_APPS = [
 
-    'wagtail.contrib.forms',
+'wagtail.contrib.forms',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
     'wagtail.contrib.redirects',
     'wagtail.embeds',
     'wagtail.sites',
@@ -53,16 +58,14 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-
-    'blog',
-
     'storages',
+    'wagtailcodeblock',
+]
+
+INSTALLED_APPS = THIRD_PARTY_APPS + [
+    'home',
+    'search',
+    'blog',
 ]
 
 MIDDLEWARE = [
@@ -174,7 +177,7 @@ STATICFILES_DIRS = [
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "armandoanaya_blog"
+WAGTAIL_SITE_NAME = "Armando Anaya Blog"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
@@ -187,6 +190,17 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+# Wagtail blocks
+WAGTAIL_CODE_BLOCK_THEME = None
+WAGTAIL_CODE_BLOCK_LANGUAGES = (
+    ('bash', 'Bash/Shell'),
+    ('css', 'CSS'),
+    ('html', 'HTML'),
+    ('javascript', 'Javascript'),
+    ('json', 'JSON'),
+    ('python', 'Python'),
+)
 
 # Storage settings
 if DEBUG:
