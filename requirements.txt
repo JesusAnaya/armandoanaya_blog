@@ -6,3 +6,4 @@ django-storages==1.9.1
 boto3==1.14.41
 sentry-sdk==0.16.3
 wagtailcodeblock==1.17.1.0
+wagtail-cache==1.0.1

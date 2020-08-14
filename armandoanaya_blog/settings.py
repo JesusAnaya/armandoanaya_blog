@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
 
     'storages',
     'wagtailcodeblock',
+    'wagtailcache',
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + [
@@ -70,6 +71,7 @@ INSTALLED_APPS = THIRD_PARTY_APPS + [
 ]
 
 MIDDLEWARE = [
+    'wagtailcache.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -77,8 +79,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+    'wagtailcache.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'armandoanaya_blog.urls'
@@ -103,7 +105,8 @@ CACHES = {
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'PASSWORD': os.environ.get('REDIS_PASSWORD', ''),
-        }
+        },
+        'TIMEOUT': 3600,
     }
 }
 
