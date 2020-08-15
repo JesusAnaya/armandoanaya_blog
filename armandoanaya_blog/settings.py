@@ -206,6 +206,8 @@ WAGTAIL_CODE_BLOCK_LANGUAGES = (
     ('python', 'Python'),
 )
 
+GOOGLE_ANALYTICS_ID = os.environ.get('GOOGLE_ANALYTICS_ID', '')
+
 # Storage settings
 if DEBUG:
     # ManifestStaticFilesStorage is recommended in production, to prevent outdated
